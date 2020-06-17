@@ -119,3 +119,22 @@ function init(){
 init();
 
 form.addEventListener('submit',addTransaction);
+
+//Screenshot and downloading
+const capture = document.querySelector("#capture");
+var button = document.getElementById("btn-download");
+const box = document.querySelector(".box");
+box.style.display = "none";
+button.style.display = "none";
+
+capture.addEventListener("click", function () {
+  html2canvas(document.body).then((canvas) => {
+    text = `Screenshot Captured`;
+    box.style.display = "block"; 
+    button.style.display = "block"; 
+    box.innerHTML = text;
+    var dataURL = canvas.toDataURL("image/png");
+    button.href = dataURL;
+    button.download = `ScreenShot.png`; // download name
+  });
+});
